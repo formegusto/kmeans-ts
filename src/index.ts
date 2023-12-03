@@ -1,35 +1,4 @@
-class RangeIterator implements Iterator<number | undefined> {
-  index!: number;
-  end!: number;
-  incVal!: number;
-
-  constructor(range: RangeIterable) {
-    Object.assign(this, range);
-  }
-
-  next(): IteratorResult<number | undefined> {
-    const value = this.index;
-    this.index += this.incVal;
-    const done = this.index > this.end;
-    return { value: done ? undefined : value, done };
-  }
-}
-
-class RangeIterable implements IRange, Iterable<number | undefined> {
-  index: number;
-  end: number;
-  incVal: number;
-
-  constructor(startOrEnd: number, end: number, incVal: number) {
-    this.index = end ? startOrEnd : 0;
-    this.end = end ? end : startOrEnd;
-    this.incVal = incVal ? incVal : 1;
-  }
-
-  [Symbol.iterator]() {
-    return new RangeIterator(this);
-  }
-}
+import { RangeIterable } from "./models";
 
 const range = new RangeIterable(10, 100, 10);
 for (let r of range) {
