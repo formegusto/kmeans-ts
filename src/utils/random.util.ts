@@ -14,7 +14,7 @@ export function generateRandomDataSet({
         {
           length: c,
         },
-        () => Math.random() * max!
+        () => Math.round(Math.random() * max!)
       )
   );
   return dataset;

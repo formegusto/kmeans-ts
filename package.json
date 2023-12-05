@@ -6,10 +6,12 @@
   "author": "formegusto <formegusto@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "npx tsc && node dist"
+    "start": "npx tsc && node dist",
+    "gen-dataset": "npx tsc && node dist/examples/generateDataSetFile"
   },
   "dependencies": {},
   "devDependencies": {
+    "@types/node": "^20.10.3",
     "typescript": "^5.3.2"
   }
 }
