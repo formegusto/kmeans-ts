@@ -1,1 +1,4 @@
-console.log("Typescript로 구현해보는 KMeans");
+import { KMeans } from "./models";
+
+const kmeans = new KMeans(10);
+console.log(kmeans);
