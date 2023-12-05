@@ -1,7 +1,9 @@
+import Errors from "../errors";
 import { euclideanDistance } from "../utils";
 
 export class KMeans implements IKMeans {
   centroids?: number[][];
+  distances?: number[][];
 
   constructor(public K: number) {}
 
@@ -31,5 +33,19 @@ export class KMeans implements IKMeans {
       // 1.4 설정된 K개 만큼의 중심점이 샘플링될 때 까지 1.2단계와 1.3단계 반복
     }
     this.centroids = centroids;
+  }
+
+  calcDistances(dataset: number[][]) {
+    if (!this.centroids) throw Errors["NotSettingInitCentroids"];
+    const distances = [];
+    for (let data of dataset) {
+      const _distances = [];
+      for (let centroid of this.centroids) {
+        const distance = euclideanDistance(data, centroid);
+        _distances.push(distance);
+      }
+      distances.push(_distances);
+    }
+    this.distances = distances;
   }
 }

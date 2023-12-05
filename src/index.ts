@@ -1,7 +1,6 @@
 import { KMeans } from "./models";
 import path from "path";
 import fs from "fs";
-
 const K = 4;
 const kmeans = new KMeans(K);
 
@@ -12,4 +11,9 @@ const dataset = JSON.parse(
 );
 
 kmeans.setInitCentroids(dataset);
-console.log(kmeans.centroids);
+kmeans.calcDistances(dataset);
+console.log(
+  kmeans.distances,
+  kmeans.distances!.length,
+  kmeans.distances![0].length
+);
