@@ -13,13 +13,7 @@ const filepath = path.join(__dirname, "..", "datas");
 const dataset = JSON.parse(
   fs.readFileSync(`${filepath}/${filename}`, { encoding: "utf-8" })
 );
+kmeans.fit(dataset);
 
-kmeans.setInitCentroids(dataset);
-console.log(kmeans.centroids);
-
-kmeans.calcDistances(dataset);
-
-kmeans.calcCentroids(dataset);
 console.log(kmeans.labels);
 console.log(kmeans.centroids);
-// const labels =

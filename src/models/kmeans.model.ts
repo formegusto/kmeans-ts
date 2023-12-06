@@ -68,4 +68,26 @@ export class KMeans implements IKMeans {
     );
     this.centroids = newCentroids;
   }
+
+  fit(dataset: number[][]) {
+    this.setInitCentroids(dataset);
+
+    while (true) {
+      const prevCentroids = [...this.centroids!];
+      this.calcDistances(dataset);
+      this.calcCentroids(dataset);
+      const nextCentroids = [...this.centroids!];
+
+      let isNext = false;
+      for (let i = 0; i < prevCentroids.length; i++) {
+        for (let j = 0; j < prevCentroids.length; j++)
+          if (prevCentroids[i][j] !== nextCentroids[i][j]) {
+            isNext = true;
+            break;
+          }
+        if (isNext) break;
+      }
+      if (!isNext) break;
+    }
+  }
 }
