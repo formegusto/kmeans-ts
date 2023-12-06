@@ -4,6 +4,7 @@ import { euclideanDistance } from "../utils";
 export class KMeans implements IKMeans {
   centroids?: number[][];
   distances?: number[][];
+  labels?: number[];
 
   constructor(public K: number) {}
 
@@ -26,8 +27,7 @@ export class KMeans implements IKMeans {
         distances.push(minDistance);
       }
       // 1.3 최소 중심점 거리 중에서 최대 거리를 갖는 점을 다음 중심으로 선정
-      const maxDistance = Math.max.apply(null, distances);
-      const maxIdx = distances.indexOf(maxDistance);
+      const maxIdx = distances.getMaxIdx();
       const nextCentroid = dataset[maxIdx];
       centroids.push(nextCentroid);
       // 1.4 설정된 K개 만큼의 중심점이 샘플링될 때 까지 1.2단계와 1.3단계 반복
@@ -47,5 +47,25 @@ export class KMeans implements IKMeans {
       distances.push(_distances);
     }
     this.distances = distances;
+  }
+
+  calcCentroids(dataset: number[][]) {
+    this.labels = this.distances!.map((d) => d.getMinIdx());
+
+    const labelCount: number[] = this.centroids!.map(() => 0);
+    const labelTotal: number[][] = this.centroids!.map((c) =>
+      Array.from({ length: c.length }, () => 0)
+    );
+    for (let i = 0; i < this.labels.length; i++) {
+      const label = this.labels[i];
+      const point = dataset[i];
+      labelCount[label]++;
+      labelTotal[label] = labelTotal[label].map((v, i) => v + point[i]);
+    }
+
+    const newCentroids = labelCount.map((lc, i) =>
+      labelTotal[i].map((lt) => lt / lc)
+    );
+    this.centroids = newCentroids;
   }
 }

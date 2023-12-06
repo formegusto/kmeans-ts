@@ -1,6 +1,10 @@
 import { KMeans } from "./models";
 import path from "path";
 import fs from "fs";
+import { setPrototype } from "./prototype";
+
+setPrototype();
+
 const K = 4;
 const kmeans = new KMeans(K);
 
@@ -11,9 +15,11 @@ const dataset = JSON.parse(
 );
 
 kmeans.setInitCentroids(dataset);
+console.log(kmeans.centroids);
+
 kmeans.calcDistances(dataset);
-console.log(
-  kmeans.distances,
-  kmeans.distances!.length,
-  kmeans.distances![0].length
-);
+
+kmeans.calcCentroids(dataset);
+console.log(kmeans.labels);
+console.log(kmeans.centroids);
+// const labels =
