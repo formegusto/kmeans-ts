@@ -9,7 +9,7 @@ export class RangeIterator extends RangeItem implements IRangeIterator {
     super();
     Object.assign(this, range);
   }
-  next(): IteratorResult<number | undefined> {
+  next(): IteratorResult<IRangeIteratorResultValue> {
     const value = this.index;
     this.index += this.incVal;
     const done = this.index > this.end;
@@ -24,7 +24,7 @@ export class RangeIterable extends RangeItem implements IRangeIterable {
     this.end = end ? end : startOrEnd;
     this.incVal = incVal ? incVal : 1;
   }
-  [Symbol.iterator](): Iterator<number | undefined, any, undefined> {
+  [Symbol.iterator](): Iterator<IRangeIteratorResultValue, any, undefined> {
     return new RangeIterator(this);
   }
 }
