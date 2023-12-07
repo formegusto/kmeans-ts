@@ -1,17 +1,9 @@
-declare interface IKMeans {
-  K: number;
-  dataset: number[][];
-}
-
 declare type IKMeansIteratorResultValue = number | undefined;
 
 declare interface IKMeansIterable
-  extends IKMeans,
-    Iterable<IKMeansIteratorResultValue> {}
+  extends Iterable<IKMeansIteratorResultValue> {}
 
-declare interface IKMeansIterator
-  extends IKMeans,
-    Iterator<IKMeansIteratorResultValue> {
+declare interface IKMeansIterator extends Iterator<IKMeansIteratorResultValue> {
   centroids: number[][];
   distances?: number[][];
   labels?: number[];
