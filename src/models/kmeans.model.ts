@@ -8,6 +8,20 @@ export class KMeans implements IKMeans {
 
   constructor(public K: number) {}
 
+  getSSE(dataset: number[][]): number {
+    if (!this.centroids || !this.labels) return Number.MAX_SAFE_INTEGER;
+
+    let sse = 0;
+    for (let i = 0; i < this.labels!.length; i++) {
+      const label = this.labels[i];
+      const point = dataset[i];
+      const centroid = this.centroids![label];
+      sse += point.reduce((acc, cur, i) => acc + (cur - centroid[i]) ** 2, 0);
+    }
+
+    return sse;
+  }
+
   setInitCentroids(dataset: number[][]) {
     // 1.1 첫 번째 중심점 무작위 선정
     const centroids = [];
@@ -62,6 +76,7 @@ export class KMeans implements IKMeans {
       labelCount[label]++;
       labelTotal[label] = labelTotal[label].map((v, i) => v + point[i]);
     }
+    console.log(`sum of squared error: ${this.getSSE(dataset)}`);
 
     const newCentroids = labelCount.map((lc, i) =>
       labelTotal[i].map((lt) => lt / lc)
@@ -76,6 +91,7 @@ export class KMeans implements IKMeans {
       const prevCentroids = [...this.centroids!];
       this.calcDistances(dataset);
       this.calcCentroids(dataset);
+
       const nextCentroids = [...this.centroids!];
 
       let isNext = false;
