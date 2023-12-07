@@ -1,7 +1,9 @@
 import Errors from "../errors";
 import { euclideanDistance } from "../utils";
 
-export class KMeans implements IKMeans {
+export class KMeansIterator implements Iterator<number[]> {}
+
+export class KMeans implements IKMeans, Iterable<number[]> {
   centroids?: number[][];
   distances?: number[][];
   labels?: number[];
