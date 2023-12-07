@@ -13,6 +13,15 @@ export class KMeans extends KMeansSetting implements IKMeansIterable {
   [Symbol.iterator](): Iterator<IKMeansIteratorResultValue> {
     return new KMeansIterator(this.K, this.dataset);
   }
+
+  fit() {
+    let result;
+    // for (result of this) {
+    //   console.log(result.sse);
+    // }
+    for (result of this);
+    return result;
+  }
 }
 
 export class KMeansIterator extends KMeansSetting implements IKMeansIterator {
@@ -120,6 +129,16 @@ export class KMeansIterator extends KMeansSetting implements IKMeansIterator {
     const sse = this.sse;
     const isNext = this.moveCentroids();
 
-    return { value: sse ? sse : undefined, done: !isNext };
+    const value: IKMeansResult = {
+      centroids: this.centroids,
+      labels: this.labels!,
+      sse,
+    };
+    const done = !isNext;
+
+    return {
+      value,
+      done,
+    };
   }
 }

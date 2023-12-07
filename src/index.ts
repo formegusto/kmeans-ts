@@ -14,6 +14,7 @@ const dataset = JSON.parse(
 );
 
 const kmeans = new KMeans(K, dataset);
-for (let sse of kmeans) {
-  console.log("sum of squared error :" + sse);
-}
+// for (let sse of kmeans) {
+//   console.log("sum of squared error :" + sse);
+// }
+console.log(kmeans.fit());
