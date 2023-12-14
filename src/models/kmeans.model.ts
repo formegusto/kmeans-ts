@@ -1,36 +1,33 @@
 import Errors from "../errors";
 import { euclideanDistance } from "../utils";
 
-export abstract class KMeansSetting {
-  constructor(public K: number, public dataset: number[][]) {}
-}
+export class KMeans implements IKMeans {
+  constructor(public K: number) {}
 
-export class KMeans extends KMeansSetting implements IKMeansIterable {
-  constructor(K: number, dataset: number[][]) {
-    super(K, dataset);
-  }
+  fit(dataset: number[][]) {
+    const iterable = new KMeansIterable(this.K, dataset);
 
-  [Symbol.iterator](): Iterator<IKMeansIteratorResultValue> {
-    return new KMeansIterator(this.K, this.dataset);
-  }
-
-  fit() {
     let result;
-    // for (result of this) {
-    //   console.log(result.sse);
-    // }
-    for (result of this);
+    for (result of iterable);
+
     return result;
   }
 }
 
-export class KMeansIterator extends KMeansSetting implements IKMeansIterator {
+export class KMeansIterable implements IKMeansIterable {
+  constructor(public K: number, public dataset: number[][]) {}
+
+  [Symbol.iterator](): Iterator<KMeansIteratorResultValue> {
+    return new KMeansIterator(this.K, this.dataset);
+  }
+}
+
+export class KMeansIterator implements IKMeansIterator {
   centroids!: number[][];
   distances?: number[][];
   labels?: number[];
 
-  constructor(K: number, dataset: number[][]) {
-    super(K, dataset);
+  constructor(public K: number, public dataset: number[][]) {
     this.setInitCentroids();
   }
 
@@ -123,7 +120,7 @@ export class KMeansIterator extends KMeansSetting implements IKMeansIterator {
     return isNext;
   }
 
-  next(): IteratorResult<IKMeansIteratorResultValue> {
+  next(): IteratorResult<KMeansIteratorResultValue> {
     this.calcDistances();
     this.labeling();
     const sse = this.sse;

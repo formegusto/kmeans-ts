@@ -13,8 +13,8 @@ const dataset = JSON.parse(
   fs.readFileSync(`${filepath}/${filename}`, { encoding: "utf-8" })
 );
 
-const kmeans = new KMeans(K, dataset);
+const kmeans = new KMeans(K);
 // for (let sse of kmeans) {
 //   console.log("sum of squared error :" + sse);
 // }
-console.log(kmeans.fit());
+console.log(kmeans.fit(dataset));
