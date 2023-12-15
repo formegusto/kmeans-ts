@@ -7,7 +7,7 @@ export class KMeans implements IKMeans {
   fit(dataset: number[][]) {
     const iterable = new KMeansIterable(this.K, dataset);
 
-    let result;
+    let result: IKMeansIteratorResult | null = null;
     for (result of iterable);
 
     return result;
@@ -17,7 +17,7 @@ export class KMeans implements IKMeans {
 export class KMeansIterable implements IKMeansIterable {
   constructor(public K: number, public dataset: number[][]) {}
 
-  [Symbol.iterator](): Iterator<KMeansIteratorResultValue> {
+  [Symbol.iterator](): Iterator<IKMeansIteratorResult, IKMeansIteratorResult> {
     const centroids = this.setInitCentroids();
     return new KMeansIterator(this.K, this.dataset, centroids);
   }
@@ -57,20 +57,6 @@ export class KMeansIterator implements IKMeansIterator {
     public centroids: number[][]
   ) {}
 
-  sse(labels: number[]) {
-    if (!this.centroids) return Number.MAX_SAFE_INTEGER;
-
-    let sse = 0;
-    for (let i = 0; i < labels.length; i++) {
-      const label = labels[i];
-      const point = this.dataset[i];
-      const centroid = this.centroids![label];
-      sse += point.reduce((acc, cur, i) => acc + (cur - centroid[i]) ** 2, 0);
-    }
-
-    return sse;
-  }
-
   calcDistances() {
     if (!this.centroids) throw Errors["NotSettingInitCentroids"];
     const distances = [];
@@ -85,7 +71,11 @@ export class KMeansIterator implements IKMeansIterator {
     return distances;
   }
 
-  moveCentroids(labels: number[]) {
+  labeling(distances: number[][]) {
+    return distances.map((d) => d.getMinIdx());
+  }
+
+  calcCentroids(labels: number[]) {
     const labelCount: number[] = this.centroids!.map(() => 0);
     const labelTotal: number[][] = this.centroids!.map((c) =>
       Array.from({ length: c.length }, () => 0)
@@ -115,18 +105,39 @@ export class KMeansIterator implements IKMeansIterator {
     return isNext;
   }
 
-  next(): IteratorResult<KMeansIteratorResultValue> {
-    const distances = this.calcDistances();
-    const labels = distances.map((d) => d.getMinIdx());
-    const sse = this.sse(labels);
-    const isNext = this.moveCentroids(labels);
+  calcSSE(labels: number[]) {
+    if (!this.centroids) return Number.MAX_SAFE_INTEGER;
 
-    const value: IKMeansResult = {
+    let sse = 0;
+    for (let i = 0; i < labels.length; i++) {
+      const label = labels[i];
+      const point = this.dataset[i];
+      const centroid = this.centroids![label];
+      sse += point.reduce((acc, cur, i) => acc + (cur - centroid[i]) ** 2, 0);
+    }
+
+    return sse;
+  }
+
+  next(): IteratorResult<IKMeansIteratorResult, IKMeansIteratorResult> {
+    // 2. 중심점과 데이터 간의 거리 계산
+    const distances = this.calcDistances();
+    // 3. 가장 가까운 중심점의 라벨을 데이터에게 부여
+    const labels = this.labeling(distances);
+    // *. 품질 평가
+    const sse = this.calcSSE(labels);
+
+    const value: IKMeansIteratorResult = {
       centroids: this.centroids,
       labels: labels!,
       sse,
     };
+
+    // 4. 중심점 재계산
+    const isNext = this.calcCentroids(labels);
     const done = !isNext;
+
+    console.log(`sse:${sse}, done:${done}`);
 
     return {
       value,

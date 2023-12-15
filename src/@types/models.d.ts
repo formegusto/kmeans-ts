@@ -1,23 +1,34 @@
-declare interface IKMeans {
+declare interface IKMeansSetting {
   K: number;
 }
 
-declare interface IKMeansIter extends IKMeans {
+declare interface IKMeansIter extends IKMeansSetting {
   dataset: number[][];
 }
 
-declare interface IKMeansResult {
+declare interface IKMeansIteratorResult {
   centroids: number[][];
   labels: number[];
   sse: number;
 }
 
-declare type KMeansIteratorResultValue = IKMeansResult | undefined;
+declare interface IKMeans extends IKMeansSetting {
+  fit: (dataset: number[][]) => IKMeansIteratorResult | null;
+}
 
 declare interface IKMeansIterable
   extends IKMeansIter,
-    Iterable<KMeansIteratorResultValue> {}
+    Iterable<IKMeansIteratorResult, IKMeansIteratorResult> {
+  setInitCentroids: (dataset: number[][]) => number[][];
+}
 
 declare interface IKMeansIterator
   extends IKMeansIter,
-    Iterator<KMeansIteratorResultValue> {}
+    Iterator<IKMeansIteratorResult, IKMeansIteratorResult> {
+  centroids: number[][];
+
+  calcDistances: () => number[][];
+  labeling: (distances: number[][]) => number[];
+  calcCentroids: (labels: number[]) => boolean;
+  calcSSE: (labels: number[]) => number;
+}
