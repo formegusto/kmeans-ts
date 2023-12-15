@@ -12,6 +12,10 @@ export class KMeans implements IKMeans {
 
     return result;
   }
+
+  steps(dataset: number[][]) {
+    return [...new KMeansIterable(this.K, dataset)];
+  }
 }
 
 export class KMeansIterable implements IKMeansIterable {

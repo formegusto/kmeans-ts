@@ -5,7 +5,7 @@ import { setPrototype } from "./prototype";
 
 setPrototype();
 
-const K = 4;
+const K = 3;
 
 const filename = "dataset-1701756794497.json";
 const filepath = path.join(__dirname, "..", "datas");
@@ -17,4 +17,5 @@ const kmeans = new KMeans(K);
 // for (let sse of kmeans) {
 //   console.log("sum of squared error :" + sse);
 // }
-console.log(kmeans.fit(dataset));
+// console.log(kmeans.fit(dataset));
+console.log(JSON.stringify(kmeans.steps(dataset)));
