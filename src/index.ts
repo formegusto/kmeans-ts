@@ -1,4 +1,4 @@
-import { KMeans } from "./models";
+import { KMeans, KMeansIterable } from "./models";
 import path from "path";
 import fs from "fs";
 import { setPrototype } from "./prototype";
@@ -14,8 +14,5 @@ const dataset = JSON.parse(
 );
 
 const kmeans = new KMeans(K);
-// for (let sse of kmeans) {
-//   console.log("sum of squared error :" + sse);
-// }
 // console.log(kmeans.fit(dataset));
 console.log(JSON.stringify(kmeans.steps(dataset)));
