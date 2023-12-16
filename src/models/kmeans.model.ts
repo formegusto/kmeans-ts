@@ -2,7 +2,7 @@ import Errors from "../errors";
 import { euclideanDistance } from "../utils";
 
 export class KMeans implements IKMeans {
-  constructor(public params: IKMeansParams) {}
+  constructor(public params: KMeansParams) {}
 
   fit(dataset: number[][]) {
     const iterable = new KMeansIterable(this.params, dataset);
@@ -19,7 +19,7 @@ export class KMeans implements IKMeans {
 }
 
 export class KMeansIterable implements IKMeansIterable {
-  constructor(public params: IKMeansParams, public dataset: number[][]) {}
+  constructor(public params: KMeansParams, public dataset: number[][]) {}
 
   [Symbol.iterator](): Iterator<IKMeansIteratorResult, IKMeansIteratorResult> {
     const centroids = this.setInitCentroids();
@@ -56,7 +56,7 @@ export class KMeansIterable implements IKMeansIterable {
 
 export class KMeansIterator implements IKMeansIterator {
   constructor(
-    public params: IKMeansParams,
+    public params: KMeansParams,
     public dataset: number[][],
     public centroids: number[][]
   ) {}
@@ -139,7 +139,12 @@ export class KMeansIterator implements IKMeansIterator {
 
     // 4. 중심점 재계산
     const isNext = this.calcCentroids(labels);
-    const done = !isNext;
+    let done = false;
+    if (!isNext) {
+      if (this.params.maxEqIter && this.params.maxEqIter)
+        this.params.maxEqIter--;
+      else done = true;
+    }
 
     console.log(`sse:${sse}, done:${done}`);
 

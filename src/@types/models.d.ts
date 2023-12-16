@@ -1,10 +1,10 @@
-declare type IKMeansParams = {
+declare type KMeansParams = {
   K: number;
-  maxEqIter: number;
+  maxEqIter?: number;
 };
 
 declare interface IKMeansSetting {
-  params: IKMeansParams;
+  params: KMeansParams;
 }
 
 declare interface IKMeansIter extends IKMeansSetting {
