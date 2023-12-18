@@ -2,10 +2,10 @@ import Errors from "../errors";
 import { euclideanDistance } from "../utils";
 
 export class KMeans implements IKMeans {
-  constructor(public params: KMeansParams) {}
+  constructor(public K: number) {}
 
   fit(dataset: number[][]) {
-    const iterable = new KMeansIterable(this.params, dataset);
+    const iterable = new KMeansIterable(this.K, dataset);
 
     let result: IKMeansIteratorResult | null = null;
     for (result of iterable);
@@ -14,16 +14,16 @@ export class KMeans implements IKMeans {
   }
 
   steps(dataset: number[][]) {
-    return [...new KMeansIterable(this.params, dataset)];
+    return [...new KMeansIterable(this.K, dataset)];
   }
 }
 
 export class KMeansIterable implements IKMeansIterable {
-  constructor(public params: KMeansParams, public dataset: number[][]) {}
+  constructor(public K: number, public dataset: number[][]) {}
 
   [Symbol.iterator](): Iterator<IKMeansIteratorResult, IKMeansIteratorResult> {
     const centroids = this.setInitCentroids();
-    return new KMeansIterator(this.params, this.dataset, centroids);
+    return new KMeansIterator(this.K, this.dataset, centroids);
   }
 
   setInitCentroids() {
@@ -56,7 +56,7 @@ export class KMeansIterable implements IKMeansIterable {
 
 export class KMeansIterator implements IKMeansIterator {
   constructor(
-    public params: KMeansParams,
+    public K: number,
     public dataset: number[][],
     public centroids: number[][]
   ) {}
