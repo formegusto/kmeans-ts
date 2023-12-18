@@ -6,11 +6,13 @@ declare interface IKMeansIter extends IKMeansSetting {
   dataset: number[][];
 }
 
-declare interface IKMeansIteratorResult {
+declare interface IKMeansResult {
   centroids: number[][];
   labels: number[];
   sse: number;
 }
+
+declare type IKMeansIteratorResult = IKMeansResult | undefined;
 
 declare interface IKMeans extends IKMeansSetting {
   fit: (dataset: number[][]) => IKMeansIteratorResult | null;
@@ -25,10 +27,10 @@ declare interface IKMeansIterable
 declare interface IKMeansIterator
   extends IKMeansIter,
     Iterator<IKMeansIteratorResult, IKMeansIteratorResult> {
-  centroids: number[][];
+  centroids?: number[][];
 
   calcDistances: () => number[][];
   labeling: (distances: number[][]) => number[];
-  calcCentroids: (labels: number[]) => boolean;
+  calcCentroids: (labels: number[]) => void;
   calcSSE: (labels: number[]) => number;
 }

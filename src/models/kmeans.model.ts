@@ -33,7 +33,7 @@ export class KMeansIterable implements IKMeansIterable {
     const firstCentroid = this.dataset[ranIdx];
     centroids.push(firstCentroid);
 
-    for (let k = 1; k < this.params.K; k++) {
+    for (let k = 1; k < this.K; k++) {
       const distances = [];
       for (let data of this.dataset) {
         let minDistance = Number.MAX_SAFE_INTEGER;
@@ -55,11 +55,14 @@ export class KMeansIterable implements IKMeansIterable {
 }
 
 export class KMeansIterator implements IKMeansIterator {
+  centroids?: number[][];
   constructor(
     public K: number,
     public dataset: number[][],
-    public centroids: number[][]
-  ) {}
+    centroids: number[][]
+  ) {
+    this.centroids = centroids;
+  }
 
   calcDistances() {
     if (!this.centroids) throw Errors["NotSettingInitCentroids"];
@@ -96,7 +99,7 @@ export class KMeansIterator implements IKMeansIterator {
     );
 
     let isNext = false;
-    const prevCentroids = this.centroids.flat();
+    const prevCentroids = this.centroids!.flat();
     const nextCentroids = newCentroids.flat();
     for (let i = 0; i < prevCentroids.length; i++) {
       if (prevCentroids[i] !== nextCentroids[i]) {
@@ -105,8 +108,11 @@ export class KMeansIterator implements IKMeansIterator {
       }
     }
 
-    this.centroids = newCentroids;
-    return isNext;
+    if (!isNext) {
+      this.centroids = undefined;
+    } else {
+      this.centroids = newCentroids;
+    }
   }
 
   calcSSE(labels: number[]) {
@@ -124,6 +130,13 @@ export class KMeansIterator implements IKMeansIterator {
   }
 
   next(): IteratorResult<IKMeansIteratorResult, IKMeansIteratorResult> {
+    if (!this.centroids) {
+      console.log(`isEnd, done:${true}`);
+      return {
+        value: undefined,
+        done: true,
+      };
+    }
     // 2. 중심점과 데이터 간의 거리 계산
     const distances = this.calcDistances();
     // 3. 가장 가까운 중심점의 라벨을 데이터에게 부여
@@ -138,16 +151,9 @@ export class KMeansIterator implements IKMeansIterator {
     };
 
     // 4. 중심점 재계산
-    const isNext = this.calcCentroids(labels);
-    let done = false;
-    if (!isNext) {
-      if (this.params.maxEqIter && this.params.maxEqIter)
-        this.params.maxEqIter--;
-      else done = true;
-    }
-
+    this.calcCentroids(labels);
+    const done = false;
     console.log(`sse:${sse}, done:${done}`);
-
     return {
       value,
       done,
