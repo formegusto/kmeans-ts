@@ -1,28 +1,28 @@
 export abstract class RangeItem {
   protected index!: number;
   protected end!: number;
-  protected incVal!: number;
+  protected step!: number;
 }
 
 export class RangeIterator extends RangeItem implements IRangeIterator {
-  constructor(range: RangeIterable) {
+  constructor(params: RangeIterable) {
     super();
-    Object.assign(this, range);
+    Object.assign(this, params);
   }
   next(): IteratorResult<IRangeIteratorResultValue> {
     const value = this.index;
-    this.index += this.incVal;
-    const done = this.index > this.end;
+    const done = value >= this.end;
+    this.index += this.step;
     return { value: done ? undefined : value, done };
   }
 }
 
 export class RangeIterable extends RangeItem implements IRangeIterable {
-  constructor(startOrEnd: number, end: number, incVal: number) {
+  constructor(startOrEnd: number, end: number, step: number = 1) {
     super();
     this.index = end ? startOrEnd : 0;
     this.end = end ? end : startOrEnd;
-    this.incVal = incVal ? incVal : 1;
+    this.step = step;
   }
   [Symbol.iterator](): Iterator<IRangeIteratorResultValue, any, undefined> {
     return new RangeIterator(this);
