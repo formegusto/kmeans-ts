@@ -4,10 +4,7 @@ export abstract class RangeSettingValue {
   protected step!: number;
 }
 
-export class RangeIterator
-  extends RangeSettingValue
-  implements IRangeIterator, IRangeIterable
-{
+export class RangeIterator extends RangeSettingValue implements IRangeIterator {
   constructor(params: RangeIterable) {
     super();
     Object.assign(this, params);

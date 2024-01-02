@@ -1,2 +1,2 @@
-declare interface IRangeIterator extends Iterator<number> {}
+declare interface IRangeIterator extends IterableIterator<number> {}
 declare interface IRangeIterable extends Iterable<number> {}
