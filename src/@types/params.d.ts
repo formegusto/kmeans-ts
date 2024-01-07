@@ -1,6 +1,6 @@
 declare interface GenerateRandomDataSetParams {
   // [row, column]
-  shape: [number, number];
+  shape: [number] | [number, number];
   max?: number;
 }
 
