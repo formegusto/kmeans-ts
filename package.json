@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "npx tsc && node dist",
-    "gen-dataset": "npx tsc && node dist/examples/generateDataSetFile"
+    "gen-dataset": "npx tsc && node dist/examples/generateDatasetFile"
   },
   "dependencies": {
     "commander": "^11.1.0"
