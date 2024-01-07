@@ -1,4 +1,4 @@
-declare interface GenerateRandomDataSetParams {
+declare interface GenerateRandomDatasetParams {
   // [row, column]
   shape: [number] | [number, number];
   max?: number;
