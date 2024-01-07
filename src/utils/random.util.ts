@@ -1,4 +1,4 @@
-export function generateRandomDataSet({
+export function generateRandomDataset({
   shape,
   max,
 }: GenerateRandomDataSetParams): number[][] {

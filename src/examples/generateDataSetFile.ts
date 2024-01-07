@@ -1,9 +1,9 @@
 import fs from "fs";
 import path from "path";
-import { generateRandomDataSet } from "../utils";
+import { generateRandomDataset } from "../utils";
 
 (() => {
-  const dataset = generateRandomDataSet({
+  const dataset = generateRandomDataset({
     shape: [100, 2],
   });
   const filepath = path.join(__dirname, "../..", "datas");
