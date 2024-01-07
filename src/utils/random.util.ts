@@ -1,7 +1,7 @@
 export function generateRandomDataset({
   shape,
   max,
-}: GenerateRandomDataSetParams): number[] | number[][] {
+}: GenerateRandomDatasetParams): GenerateRandomDatasetResult {
   max = max ?? 100;
   const [r, c] = shape;
   const dataset = c
