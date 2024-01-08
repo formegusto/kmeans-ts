@@ -1,2 +1,2 @@
 export * from "./range.model";
-export * from "./kmeans.model";
+export * from "./kmeans.iter.model";
