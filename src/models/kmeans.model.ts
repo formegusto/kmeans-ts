@@ -2,18 +2,18 @@ interface IKMeansSetting {
   K: number;
 }
 
-interface IKmeansMethodParams {
+interface IKMeansMethodParams {
   dataset?: number[][];
   centers?: number[][];
   distances?: number[][];
   labels?: number[];
 }
 
-interface IKMeansResult extends IKmeansMethodParams {
+interface IKMeansResult extends IKMeansMethodParams {
   inertia: number;
 }
 
-type KMeansMethod<R = number[][]> = (params: IKmeansMethodParams) => R;
+type KMeansMethod<R = number[][]> = (params: IKMeansMethodParams) => R;
 interface IKMeans extends IKMeansSetting {
   initCenters: KMeansMethod;
   calcDistances: KMeansMethod;
@@ -26,27 +26,27 @@ interface IKMeans extends IKMeansSetting {
 export class KMeans implements IKMeans {
   constructor(public K: number) {}
 
-  initCenters({ dataset }: IKmeansMethodParams): number[][] {
+  initCenters({ dataset }: IKMeansMethodParams): number[][] {
     return [];
   }
 
-  calcDistances({ centers }: IKmeansMethodParams): number[][] {
+  calcDistances({ centers }: IKMeansMethodParams): number[][] {
     return [];
   }
 
-  setLabels({ distances }: IKmeansMethodParams): number[] {
+  setLabels({ distances }: IKMeansMethodParams): number[] {
     return [];
   }
 
-  moveCenters({ dataset, labels }: IKmeansMethodParams): number[][] {
+  moveCenters({ dataset, labels }: IKMeansMethodParams): number[][] {
     return [];
   }
 
-  calcInertia({ dataset, centers, labels }: IKmeansMethodParams): number {
+  calcInertia({ dataset, centers, labels }: IKMeansMethodParams): number {
     return 0;
   }
 
-  fit({ dataset }: IKmeansMethodParams): IKmeansMethodParams {
+  fit({ dataset }: IKMeansMethodParams): IKMeansResult {
     return {
       centers: [],
       labels: [],
