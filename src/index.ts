@@ -1,8 +1,9 @@
-import { KMeans } from "./models";
+// import { KMeans } from "./models";
 import path from "path";
 import fs from "fs";
 import { setPrototype } from "./prototype";
 import { Command } from "commander";
+import { KMeans } from "./models/kmeans.model";
 
 setPrototype();
 (() => {
@@ -22,9 +23,13 @@ setPrototype();
       fs.readFileSync(filepath, { encoding: "utf-8" })
     );
 
+    // const K = 3;
+    // const kmeans = new KMeans(K);
+    // console.log(JSON.stringify(kmeans.fit(dataset)));
     const K = 3;
     const kmeans = new KMeans(K);
-    console.log(JSON.stringify(kmeans.fit(dataset)));
+    const centers = kmeans.initCenters({ dataset });
+    console.log(dataset, centers);
   } catch (err) {
     console.error(err);
   }
