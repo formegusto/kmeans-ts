@@ -65,11 +65,31 @@ export class KMeans implements IKMeans {
   }
 
   setLabels({ distances }: IKMeansMethodParams): number[] {
-    return [];
+    if (!distances) throw Errors.EmptyRequiredParameters("distances");
+    return distances.map((distance) => distance.getMinIdx());
   }
 
   moveCenters({ dataset, labels }: IKMeansMethodParams): number[][] {
-    return [];
+    if (!dataset || !labels)
+      throw Errors.EmptyRequiredParameters("dataset", "labels");
+
+    const colSize = dataset[0].length;
+    const labelCount = Array(this.K).fill(0);
+    const labelTotal = Array.from({ length: this.K }, () =>
+      Array(colSize).fill(0)
+    );
+
+    for (let i = 0; i < dataset.length; i++) {
+      const label = labels[i];
+      const data = dataset[i];
+      labelCount[label]++;
+      labelTotal[label] = labelTotal[label].map((v, vi) => v + data[vi]);
+    }
+
+    const nextCenters = labelCount.map((count, label) =>
+      labelTotal[label].map((total) => total / count)
+    );
+    return nextCenters;
   }
 
   calcInertia({ dataset, centers, labels }: IKMeansMethodParams): number {
