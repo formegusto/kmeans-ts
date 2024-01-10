@@ -2,7 +2,7 @@
 import { setPrototype } from "./prototype";
 import { Command } from "commander";
 import { KMeans } from "./models/kmeans.model";
-import { importOutput } from "./utils";
+import { exportOutput, generateRandomDataset } from "./utils";
 
 setPrototype();
 (() => {
@@ -17,15 +17,17 @@ setPrototype();
       )
       .parse();
     const { filename } = com.opts<KMeansRunParams>();
-    const dataset = importOutput(filename);
-
+    // const dataset = importOutput(filename);
     // const K = 3;
     // const kmeans = new KMeans(K);
     // console.log(JSON.stringify(kmeans.fit(dataset)));
-    const K = 3;
-    const kmeans = new KMeans(K);
-    const centers = kmeans.initCenters({ dataset });
-    console.log(dataset, centers);
+    for (let i = 0; i < 4; i++) {
+      const dataset = generateRandomDataset({ shape: [100, 2] }) as number[][];
+      const K = 3;
+      const kmeans = new KMeans(K);
+      const centers = kmeans.initCenters({ dataset });
+      exportOutput(`process_1-2_test_${i}.json`, { dataset, centers });
+    }
   } catch (err) {
     console.error(err);
   }
