@@ -1,9 +1,8 @@
 // import { KMeans } from "./models";
-import path from "path";
-import fs from "fs";
 import { setPrototype } from "./prototype";
 import { Command } from "commander";
 import { KMeans } from "./models/kmeans.model";
+import { importOutput } from "./utils";
 
 setPrototype();
 (() => {
@@ -18,10 +17,7 @@ setPrototype();
       )
       .parse();
     const { filename } = com.opts<KMeansRunParams>();
-    const filepath = path.join(__dirname, "..", "datas", filename);
-    const dataset = JSON.parse(
-      fs.readFileSync(filepath, { encoding: "utf-8" })
-    );
+    const dataset = importOutput(filename);
 
     // const K = 3;
     // const kmeans = new KMeans(K);
