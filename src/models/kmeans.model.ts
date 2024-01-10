@@ -21,7 +21,7 @@ interface IKMeans extends IKMeansSetting {
   initCenters: KMeansMethod;
   calcDistances: KMeansMethod;
   setLabels: KMeansMethod<number[]>;
-  moveCenters: KMeansMethod;
+  moveCenters: KMeansMethod<number[][] | null>;
   calcInertia: KMeansMethod<number>;
   fit: KMeansMethod<IKMeansResult>;
 }
@@ -69,9 +69,13 @@ export class KMeans implements IKMeans {
     return distances.map((distance) => distance.getMinIdx());
   }
 
-  moveCenters({ dataset, labels }: IKMeansMethodParams): number[][] {
-    if (!dataset || !labels)
-      throw Errors.EmptyRequiredParameters("dataset", "labels");
+  moveCenters({
+    dataset,
+    centers,
+    labels,
+  }: IKMeansMethodParams): number[][] | null {
+    if (!dataset || !centers || !labels)
+      throw Errors.EmptyRequiredParameters("dataset", "centers", "labels");
 
     const colSize = dataset[0].length;
     const labelCount = Array(this.K).fill(0);
@@ -85,11 +89,16 @@ export class KMeans implements IKMeans {
       labelCount[label]++;
       labelTotal[label] = labelTotal[label].map((v, vi) => v + data[vi]);
     }
-
     const nextCenters = labelCount.map((count, label) =>
       labelTotal[label].map((total) => total / count)
     );
-    return nextCenters;
+
+    const prev = centers.flat();
+    const next = nextCenters.flat();
+    for (let i = 0; i < prev.length; i++) {
+      if (prev[i] !== next[i]) return nextCenters;
+    }
+    return null;
   }
 
   calcInertia({ dataset, centers, labels }: IKMeansMethodParams): number {
