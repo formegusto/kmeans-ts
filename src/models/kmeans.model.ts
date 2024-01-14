@@ -102,7 +102,18 @@ export class KMeans implements IKMeans {
   }
 
   calcInertia({ dataset, centers, labels }: IKMeansMethodParams): number {
-    return 0;
+    if (!dataset || !centers || !labels)
+      throw Errors.EmptyRequiredParameters("dataset", "centers", "labels");
+
+    let inertia = 0;
+    for (let i = 0; i < dataset.length; i++) {
+      const a = dataset[i];
+      const b = centers[labels[i]];
+      const sse = a.reduce((acc, cur, j) => acc + (cur - b[j]) ** 2, 0);
+      inertia += sse;
+    }
+
+    return inertia;
   }
 
   fit({ dataset }: IKMeansMethodParams): IKMeansResult {

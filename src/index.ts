@@ -40,10 +40,14 @@ setPrototype();
       const distances = kmeans.calcDistances({ dataset, centers });
       // 3. 최소 거리 중심점의 군집 번호를 데이터에 부여
       const labels = kmeans.setLabels({ distances });
+      // *. 평가
+      const inertia = kmeans.calcInertia({ dataset, centers, labels });
+      console.log(inertia);
       steps.push({
         dataset,
         centers,
         labels,
+        inertia,
       });
       // 4. 군집 별 평균값을 계산하여 중심점에 반영
       const nextCenters = kmeans.moveCenters({ dataset, centers, labels });
