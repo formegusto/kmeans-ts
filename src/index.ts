@@ -1,8 +1,10 @@
 // import { KMeans } from "./models";
+import { KMeansIterator } from "./models/kmeans.model";
 import { setPrototype } from "./prototype";
 import { Command } from "commander";
-import { KMeans } from "./models/kmeans.model";
 import { exportOutput, generateRandomDataset } from "./utils";
+// import { KMeans } from "./models/kmeans.model";
+// import { exportOutput, generateRandomDataset } from "./utils";
 
 setPrototype();
 (() => {
@@ -58,18 +60,24 @@ setPrototype();
     // console.log(steps.length);
     // exportOutput(`process_3-4_test.json`, steps);
 
-    const results = [];
-    for (let i = 0; i < 8; i++) {
-      const dataset = generateRandomDataset({ shape: [100, 2] }) as number[][];
-      const K = 3 + Math.floor(Math.random() * 3);
-      const kmeans = new KMeans(K);
-      const result = kmeans.fit({ dataset });
-      results.push({
-        dataset,
-        result,
-      });
-    }
-    exportOutput(`process_fit_test.json`, results);
+    // const results = [];
+    // for (let i = 0; i < 8; i++) {
+    //   const dataset = generateRandomDataset({ shape: [100, 2] }) as number[][];
+    //   const K = 3 + Math.floor(Math.random() * 3);
+    //   const kmeans = new KMeans(K);
+    //   const result = kmeans.fit({ dataset });
+    //   results.push({
+    //     dataset,
+    //     result,
+    //   });
+    // }
+    // exportOutput(`process_fit_test.json`, results);
+
+    const K = 3;
+    const dataset = generateRandomDataset({ shape: [100, 2] }) as number[][];
+    const iterator = new KMeansIterator(K, dataset);
+    const steps = [...iterator];
+    exportOutput(`process_iterator_test.json`, { dataset, steps });
   } catch (err) {
     console.error(err);
   }

@@ -1,33 +1,30 @@
-interface IKMeansSetting {
-  K: number;
-}
-
-interface IKMeansMethodParams {
+declare interface IKMeansMethodParams {
   dataset?: number[][];
   centers?: number[][];
   distances?: number[][];
   labels?: number[];
 }
 
-interface IKMeansResult extends IKMeansMethodParams {
+declare interface IKMeansResult extends IKMeansMethodParams {
   inertia: number;
 }
 
-declare interface IKMeans {}
+declare type KMeansMethod<R = number[][]> = (params: IKMeansMethodParams) => R;
 
-// declare interface IKMeansIterable
-//   extends IKMeansIter,
-//     Iterable<IKMeansIteratorResult, IKMeansIteratorResult> {
-//   setInitCentroids: (dataset: number[][]) => number[][];
-// }
-
-// declare interface IKMeansIterator
-//   extends IKMeansIter,
-//     Iterator<IKMeansIteratorResult, IKMeansIteratorResult> {
-//   centroids?: number[][];
-
-//   calcDistances: () => number[][];
-//   labeling: (distances: number[][]) => number[];
-//   calcCentroids: (labels: number[]) => void;
-//   calcSSE: (labels: number[]) => number;
-// }
+declare interface IKMeansSetting {
+  K: number;
+  dataset?: number[][];
+  centers?: number[][];
+}
+declare interface IKMeans extends IKMeansSetting, Iterable<IKMeansResult> {
+  fit: KMeansMethod<IKMeansResult>;
+}
+declare interface IKMeansIterator
+  extends IKMeansSetting,
+    IterableIterator<IKMeansResult> {
+  initCenters: KMeansMethod;
+  calcDistances: KMeansMethod;
+  setLabels: KMeansMethod<number[]>;
+  moveCenters: KMeansMethod<number[][] | null>;
+  calcInertia: KMeansMethod<number>;
+}
