@@ -2,8 +2,8 @@ export function generateRandomDataset({
   shape,
   max,
 }: GenerateRandomDatasetParams): GenerateRandomDatasetResult {
-  max = max ?? 100;
   const [r, c] = shape;
+  max = max ?? 100;
   const dataset = c
     ? Array.from(
         {
@@ -14,14 +14,14 @@ export function generateRandomDataset({
             {
               length: c,
             },
-            () => Math.random() * max!
+            () => Math.round(Math.random() * max!)
           )
       )
     : Array.from(
         {
           length: r,
         },
-        () => Math.random() * max!
+        () => Math.round(Math.random() * max!)
       );
   return dataset;
 }
