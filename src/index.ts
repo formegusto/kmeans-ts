@@ -1,8 +1,8 @@
 // import { KMeans } from "./models";
-import { KMeansIterator } from "./models/kmeans.model";
+import { KMeans, KMeansIterator } from "./models/kmeans.model";
 import { setPrototype } from "./prototype";
 import { Command } from "commander";
-import { exportOutput, generateRandomDataset } from "./utils";
+import { exportOutput, generateRandomDataset, importOutput } from "./utils";
 // import { KMeans } from "./models/kmeans.model";
 // import { exportOutput, generateRandomDataset } from "./utils";
 
@@ -20,8 +20,11 @@ setPrototype();
       .parse();
     const { filename } = com.opts<KMeansRunParams>();
     // const dataset = importOutput(filename);
-    // const K = 3;
-    // const kmeans = new KMeans(K);
+    // while (true) {
+    //   const K = 7;
+    //   const kmeans = new KMeans(K, dataset);
+    //   console.log(...kmeans);
+    // }
     // console.log(JSON.stringify(kmeans.fit(dataset)));
     // for (let i = 0; i < 4; i++) {
     //   const dataset = generateRandomDataset({ shape: [100, 2] }) as number[][];
@@ -78,6 +81,16 @@ setPrototype();
     const iterator = new KMeansIterator(K, dataset);
     const steps = [...iterator];
     exportOutput(`process_iterator_test.json`, { dataset, steps });
+
+    let i = 0;
+    while (true) {
+      i++;
+      const K = 3 + Math.floor(Math.random() * 3);
+      new KMeans(K).fit({
+        dataset: generateRandomDataset({ shape: [100, 2] }) as number[][],
+      });
+      console.log(i);
+    }
   } catch (err) {
     console.error(err);
   }

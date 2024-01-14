@@ -17,7 +17,7 @@ declare interface IKMeansSetting {
   centers?: number[][];
 }
 declare interface IKMeans extends IKMeansSetting, Iterable<IKMeansResult> {
-  fit: KMeansMethod<IKMeansResult>;
+  fit: KMeansMethod<IKMeansResult | undefined>;
 }
 declare interface IKMeansIterator
   extends IKMeansSetting,

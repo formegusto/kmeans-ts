@@ -14,14 +14,14 @@ export function generateRandomDataset({
             {
               length: c,
             },
-            () => Math.round(Math.random() * max!)
+            () => Math.random() * max!
           )
       )
     : Array.from(
         {
           length: r,
         },
-        () => Math.round(Math.random() * max!)
+        () => Math.random() * max!
       );
   return dataset;
 }
