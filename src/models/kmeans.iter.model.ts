@@ -142,18 +142,18 @@ export class KMeansIterator implements IKMeansIterator {
     // 3. 가장 가까운 중심점의 라벨을 데이터에게 부여
     const labels = this.labeling(distances);
     // *. 품질 평가
-    const sse = this.calcSSE(labels);
+    const inertia = this.calcSSE(labels);
 
     const value: IKMeansIteratorResult = {
       centroids: this.centroids,
       labels: labels!,
-      sse,
+      inertia,
     };
 
     // 4. 중심점 재계산
     this.calcCentroids(labels);
     const done = false;
-    console.log(`sse:${sse}, done:${done}`);
+    console.log(`inertia:${inertia}, done:${done}`);
     return {
       value,
       done,

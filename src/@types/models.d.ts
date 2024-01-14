@@ -9,7 +9,7 @@ declare interface IKMeansIter extends IKMeansSetting {
 declare interface IKMeansResult {
   centroids: number[][];
   labels: number[];
-  sse: number;
+  inertia: number;
 }
 
 declare type IKMeansIteratorResult = IKMeansResult | undefined;
