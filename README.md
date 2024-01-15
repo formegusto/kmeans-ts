@@ -5,11 +5,9 @@
 <table>
   <tbody>
     <tr>
-      <a href="https://formegusto.tistory.com/5">
-        <td align="center">
+      <td align="center">
           1
-        </td>
-      </a>
+      </td>
       <td align="center">
         2
       </td>
