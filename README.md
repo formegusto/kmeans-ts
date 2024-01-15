@@ -16,10 +16,10 @@
     </tr>
     <tr>
       <td>
-        <img src="https://github.com/formegusto/kmeans-ts/assets/52296323/8e757bce-315e-4868-a2d6-3fbdd606848d" alt="iter bingle bingle" style="width: 100%; object-fit: cover;"/>
+        <img src="https://github.com/formegusto/kmeans-ts/assets/52296323/8e757bce-315e-4868-a2d6-3fbdd606848d" alt="iter bingle bingle" width="150px" height="150px"/>
       </td>
       <td>
-        <img src="https://github.com/formegusto/kmeans-ts/assets/52296323/2afee5d7-659e-435b-a711-e31624fec844" alt="eojil eojil my first ai" style="width: 100%; object-fit: cover;"/>
+        <img src="https://github.com/formegusto/kmeans-ts/assets/52296323/2afee5d7-659e-435b-a711-e31624fec844" alt="eojil eojil my first ai" width="150px" height="150px"/>
       </td>
     </tr>
     <tr>
