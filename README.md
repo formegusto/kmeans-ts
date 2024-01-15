@@ -1,14 +1,15 @@
 # Typescript로 구현해 보는 KMeans
 
+## more contents on my blog 🍩
+
 <table>
   <tbody>
     <tr>
-      <td align="center" colspan="2">more contents on my blog 🍩</td>
-    </tr>
-    <tr>
-      <td align="center">
-        1
-      </td>
+      <a href="https://formegusto.tistory.com/5">
+        <td align="center">
+          1
+        </td>
+      </a>
       <td align="center">
         2
       </td>
