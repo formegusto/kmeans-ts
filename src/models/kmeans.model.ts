@@ -1,9 +1,5 @@
 import Errors from "../errors";
-import {
-  euclideanDistance,
-  exportOutput,
-  generateRandomDataset,
-} from "../utils";
+import { euclideanDistance, generateRandomDataset } from "../utils";
 
 export class KMeans implements IKMeans {
   constructor(public K: number, public dataset?: number[][]) {}
@@ -21,6 +17,12 @@ export class KMeans implements IKMeans {
     let result;
     for (result of iterator);
     return result;
+  }
+
+  steps({ dataset }: IKMeansMethodParams): IKMeansResult[] {
+    if (!dataset) throw Errors.EmptyRequiredParameters("dataset");
+    const iterator = new KMeansIterator(this.K, dataset);
+    return [...iterator];
   }
 }
 

@@ -18,6 +18,7 @@ declare interface IKMeansSetting {
 }
 declare interface IKMeans extends IKMeansSetting, Iterable<IKMeansResult> {
   fit: KMeansMethod<IKMeansResult | undefined>;
+  steps: KMeansMethod<IKMeansResult[]>;
 }
 declare interface IKMeansIterator
   extends IKMeansSetting,

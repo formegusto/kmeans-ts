@@ -76,21 +76,27 @@ setPrototype();
     // }
     // exportOutput(`process_fit_test.json`, results);
 
-    const K = 3;
-    const dataset = generateRandomDataset({ shape: [100, 2] }) as number[][];
-    const iterator = new KMeansIterator(K, dataset);
-    const steps = [...iterator];
-    exportOutput(`process_iterator_test.json`, { dataset, steps });
+    // const K = 3;
+    // const dataset = generateRandomDataset({ shape: [100, 2] }) as number[][];
+    // const iterator = new KMeansIterator(K, dataset);
+    // const steps = [...iterator];
+    // exportOutput(`process_iterator_test.json`, { dataset, steps });
 
-    let i = 0;
-    while (true) {
-      i++;
-      const K = 3 + Math.floor(Math.random() * 3);
-      new KMeans(K).fit({
-        dataset: generateRandomDataset({ shape: [100, 2] }) as number[][],
-      });
-      console.log(i);
-    }
+    // let i = 0;
+    // while (true) {
+    //   i++;
+    //   const K = 3 + Math.floor(Math.random() * 3);
+    //   new KMeans(K).fit({
+    //     dataset: generateRandomDataset({ shape: [100, 2] }) as number[][],
+    //   });
+    //   console.log(i);
+    // }
+    const dataset = generateRandomDataset({ shape: [100, 2] }) as number[][];
+    const results = new KMeans(3).steps({
+      dataset,
+    });
+    exportOutput(`process_steps_test.json`, { dataset, results });
+    console.log(results.length);
   } catch (err) {
     console.error(err);
   }
