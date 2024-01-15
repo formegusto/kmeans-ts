@@ -2,22 +2,29 @@
 
 <table>
   <tbody>
-    <tr style="display: flex; flex-direction: row;">
+    <tr>
+      <td>
+        1
+      </td>
+      <td>
+        2
+      </td>
+    </tr>
+    <tr>
       <td>1</td>
       <td>
         <img src="https://github.com/formegusto/kmeans-ts/assets/52296323/8e757bce-315e-4868-a2d6-3fbdd606848d" alt="iter bingle bingle" style="width: 150px; height: 150px;"/>
       </td>
-      <td style="flex: 1;">
-        <h1>Javascript Iteration Protocol</h1>
-        <p>Javascript Iteration Protocol은 ES6 이후에 도입된 순회 가능한 데이터 컬렉션을 표현하는 규칙입니다. 이전에 문자열이나 배열 등의 저희가 잘 아는 데이터 컬렉션들은 각자 나름의 규칙을 가지고 순회를 했다고 하는데요.</p>
-      </td>
-    </tr>
-    <tr style="display: flex; flex-direction: row;">
-      <td>2</td>
       <td>
         <img src="https://github.com/formegusto/kmeans-ts/assets/52296323/2afee5d7-659e-435b-a711-e31624fec844" alt="eojil eojil my first ai" style="width: 150px; height: 150px;"/>
       </td>
-      <td style="flex: 1;">
+    </tr>
+    <tr>
+      <td>
+        <h1>Javascript Iteration Protocol</h1>
+        <p>Javascript Iteration Protocol은 ES6 이후에 도입된 순회 가능한 데이터 컬렉션을 표현하는 규칙입니다. 이전에 문자열이나 배열 등의 저희가 잘 아는 데이터 컬렉션들은 각자 나름의 규칙을 가지고 순회를 했다고 하는데요.</p>
+      </td>
+      <td>
         <h1>KMeans and KMeans++ Difference</h1>
         <p>군집화(Clustering)는 데이터 집합 내 데이터에 유사성(Similarity)을 측정하는 계산식을 기반으로 여러 개의 군집(Cluster)으로 분류하는 비지도 학습(Unsupervised Learning)의 패러다임 중 하나입니다.</p>
       </td>
