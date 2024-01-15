@@ -11,7 +11,6 @@
       </td>
     </tr>
     <tr>
-      <td>1</td>
       <td>
         <img src="https://github.com/formegusto/kmeans-ts/assets/52296323/8e757bce-315e-4868-a2d6-3fbdd606848d" alt="iter bingle bingle" style="width: 150px; height: 150px;"/>
       </td>
