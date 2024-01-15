@@ -1,13 +1,9 @@
 # Typescript로 구현해 보는 KMeans
 
 <table>
-  <colgroup>
-    <col width="50%"/>
-    <col width="50%"/>
-  </colgroup>
   <tbody>
     <tr>
-      <td>📖 more contents on my blog </td>
+      <td colspan="2">more contents on my blog 🍩</td>
     </tr>
     <tr>
       <td align="center">
