@@ -3,10 +3,10 @@
 <table>
   <tbody>
     <tr>
-      <td>
+      <td style="text-align: center;">
         1
       </td>
-      <td>
+      <td style="text-align: center;">
         2
       </td>
     </tr>
