@@ -3,7 +3,7 @@
 <table>
   <colgroup>
     <col style="width: min-content;"/>
-    <col style="min-width: 150px"/>
+    <col style="min-width: 150px;"/>
     <col width="*"/>
   </colgroup>
   <tbody>
