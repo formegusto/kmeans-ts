@@ -4,6 +4,12 @@ declare interface GenerateRandomDatasetParams {
   max?: number;
 }
 
+declare interface GenerateRandomDatasetRunParams {
+  length: string;
+}
+
 declare interface KMeansRunParams {
   filename: string;
+  K: string;
+  type: "steps" | "result";
 }

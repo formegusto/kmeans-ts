@@ -1,5 +1,5 @@
 // import { KMeans } from "./models";
-import { KMeans, KMeansIterator } from "./models/kmeans.model";
+import { KMeans } from "./models/kmeans.model";
 import { setPrototype } from "./prototype";
 import { Command } from "commander";
 import { exportOutput, generateRandomDataset, importOutput } from "./utils";
