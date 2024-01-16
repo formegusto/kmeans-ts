@@ -1,1 +1,1 @@
-declare type GenerateRandomDatasetResult = number[] | number[][];
+declare type GenerateRandomDatasetResult = number[][];
