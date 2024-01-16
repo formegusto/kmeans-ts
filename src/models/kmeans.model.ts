@@ -7,7 +7,7 @@ export class KMeans implements IKMeans {
   [Symbol.iterator](): Iterator<IKMeansResult> {
     return new KMeansIterator(
       this.K,
-      this.dataset ?? (generateRandomDataset({ shape: [100, 2] }) as number[][])
+      this.dataset ?? generateRandomDataset({ shape: [100, 2] })
     );
   }
 
