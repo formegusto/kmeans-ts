@@ -6,7 +6,7 @@
   "author": "formegusto <formegusto@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "run-kmeans": "npx tsc && node dist",
+    "run-kmeans": "npx tsc && node dist/examples/runKMeans",
     "gen-dataset": "npx tsc && node dist/examples/generatePointDataSet"
   },
   "dependencies": {
