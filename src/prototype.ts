@@ -1,7 +1,7 @@
 export function setPrototype() {
   Array.prototype.getMinIdx = function () {
-    const maxValue = Math.min.apply(null, this);
-    const minIdx = this.indexOf(maxValue);
+    const minValue = Math.min.apply(null, this);
+    const minIdx = this.indexOf(minValue);
 
     return minIdx;
   };

@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "kmeans": "npx tsc && node dist/examples/runKMeans",
-    "gen-dataset": "npx tsc && node dist/examples/generatePointDataSet"
+    "gen-dataset": "npx tsc && node dist/examples/generatePointDataset"
   },
   "dependencies": {
     "commander": "^11.1.0"
