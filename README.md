@@ -1,6 +1,6 @@
 # Typescript로 구현해 보는 KMeans
 
-## Initial Settings
+## 📕 initial settings
 
 ```jsx
 /* download code */
@@ -14,7 +14,7 @@ npm install or yarn
 mkdir output
 ```
 
-## generate random point dataset
+## 📗 generate random point dataset
 
 ```jsx
 /* Please check the output folder after execution! */
@@ -23,7 +23,7 @@ or
 yarn gen-dataset -l <data length>
 ```
 
-### run kmeans
+## 📘 run kmeans
 
 ```jsx
 /* Please check the output folder after execution! */
@@ -32,7 +32,7 @@ or
 yarn kmeans -f <dataset-filename> -t <result | steps, output file type> -k <HyperParameter>
 ```
 
-## [more stories on my blog 🍩](https://formegusto.tistory.com/search/typescript%EB%A1%9C%20%EA%B5%AC%ED%98%84%ED%95%B4%20%EB%B3%B4%EB%8A%94%20KMeans)
+## [🍩 more stories on my blog](https://formegusto.tistory.com/search/typescript%EB%A1%9C%20%EA%B5%AC%ED%98%84%ED%95%B4%20%EB%B3%B4%EB%8A%94%20KMeans)
 
 <table>
   <tbody>
@@ -55,11 +55,11 @@ yarn kmeans -f <dataset-filename> -t <result | steps, output file type> -k <Hype
         <img src="https://github.com/formegusto/kmeans-ts/assets/52296323/2afee5d7-659e-435b-a711-e31624fec844" alt="eojil eojil my first ai" width="150px" height="150px"/>
       </td>
       <td align="center">
-        <img src="https://github.com/formegusto/kmeans-ts/assets/52296323/0f1cb70f-9890-46f9-955b-59e16db7f343" alt="eojil eojil my first ai" width="150px" height="150px"/>
+        <img src="https://github.com/formegusto/kmeans-ts/assets/52296323/0f1cb70f-9890-46f9-955b-59e16db7f343" alt="jeongli kkeut" width="150px" height="150px"/>
       </td>
     </tr>
     <tr>
-      <td align="center">Javascript Iteration Protocol</td>
+      <td align="center"><a href="https://formegusto.tistory.com/5">Javascript Iteration Protocol</a></td>
       <td align="center">KMeans and KMeans++ Difference</td>
       <td align="center">KMeans++ with Typescript</td>
     </tr>
