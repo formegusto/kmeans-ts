@@ -1,4 +1,4 @@
-# Typescript로 구현해 보는 KMeans
+# 📚 Typescript로 구현해 보는 KMeans
 
 ## 📕 initial settings
 
