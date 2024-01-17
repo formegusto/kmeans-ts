@@ -59,9 +59,9 @@ yarn kmeans -f <dataset-filename> -t <result | steps, output file type> -k <Hype
       </td>
     </tr>
     <tr>
-      <td align="center"><a href="https://formegusto.tistory.com/entry/Typescript-%EB%A1%9C-%EA%B5%AC%ED%98%84%ED%95%B4%EB%B3%B4%EB%8A%94-KMeans-1-Javascript-Iteration-Protocol">Javascript Iteration Protocol</a></td>
-      <td align="center"><a href="https://formegusto.tistory.com/entry/Typescript%EB%A1%9C-%EA%B5%AC%ED%98%84%ED%95%B4-%EB%B3%B4%EB%8A%94-KMeans-2-KMeans-and-KMeans-Difference">KMeans and KMeans++ Difference</a></td>
-      <td align="center"><a href="https://formegusto.tistory.com/entry/Typescript%EB%A1%9C-%EA%B5%AC%ED%98%84%ED%95%B4-%EB%B3%B4%EB%8A%94-KMeans-3-KMeans-with-Typescript">KMeans++ with Typescript<a></td>
+      <td align="center"><a href="https://formegusto.tistory.com/entry/Typescript-%EB%A1%9C-%EA%B5%AC%ED%98%84%ED%95%B4%EB%B3%B4%EB%8A%94-KMeans-1-Javascript-Iteration-Protocol" target="_blank">Javascript Iteration Protocol</a></td>
+      <td align="center"><a href="https://formegusto.tistory.com/entry/Typescript%EB%A1%9C-%EA%B5%AC%ED%98%84%ED%95%B4-%EB%B3%B4%EB%8A%94-KMeans-2-KMeans-and-KMeans-Difference" target="_blank">KMeans and KMeans++ Difference</a></td>
+      <td align="center"><a href="https://formegusto.tistory.com/entry/Typescript%EB%A1%9C-%EA%B5%AC%ED%98%84%ED%95%B4-%EB%B3%B4%EB%8A%94-KMeans-3-KMeans-with-Typescript" target="_blank">KMeans++ with Typescript<a></td>
     </tr>
     <tr>
       <td>Javascript Iteration Protocol은 ES6 이후에 도입된 순회 가능한 데이터 컬렉션을 표현하는 규칙입니다. 이전에 문자열이나 배열 등의 저희가 잘 아는 데이터 컬렉션들은 각자 나름의 규칙을 가지고 순회를 했다고 하는데요.</td>
