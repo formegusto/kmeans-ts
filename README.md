@@ -1,6 +1,38 @@
 # Typescript로 구현해 보는 KMeans
 
-## more contents on my blog 🍩
+## Initial Settings
+
+```jsx
+/* download code */
+git clone https://github.com/formegusto/kmeans-ts.git
+cd kmeans-ts
+
+/* install package */
+npm install or yarn
+
+/* make required directory */
+mkdir output
+```
+
+## generate random point dataset
+
+```jsx
+/* Please check the output folder after execution! */
+npm run gen-dataset -- -l 100
+or
+yarn gen-dataset -l <data length>
+```
+
+### run kmeans
+
+```jsx
+/* Please check the output folder after execution! */
+npm run kmeans -- -f <dataset-filename> -t <result | steps, output file type> -k <HyperParameter>
+or
+yarn kmeans -f <dataset-filename> -t <result | steps, output file type> -k <HyperParameter>
+```
+
+## [more stories on my blog 🍩](https://formegusto.tistory.com/search/typescript%EB%A1%9C%20%EA%B5%AC%ED%98%84%ED%95%B4%20%EB%B3%B4%EB%8A%94%20KMeans)
 
 <table>
   <tbody>
